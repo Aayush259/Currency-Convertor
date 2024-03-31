@@ -2,7 +2,44 @@
 const Select = document.querySelectorAll('select');
 const ConvertBtn = document.getElementById('convert-btn');
 const Input = document.getElementById('inputAmount');
-const Output = document.querySelector('currency-output');
+const Output = document.querySelector('.currency-output');
+
+let convertFrom = 'USD';
+let convertTo = 'INR';
+
+/*
+    This function converts the currency and shows it on the screen.
+*/
+const Convert = async () => {
+
+    const InputAmount = Number(Input.value);
+
+    // If the input amount is not a number then do nothing.
+    if (isNaN(InputAmount)) {
+        return;
+    }
+
+    try {
+        // Fetching data from exchange rate API.
+        let response = await fetch(`https://v6.exchangerate-api.com/v6/10a8a64ffe163141e7e5dd06/latest/${convertFrom}`);
+
+        const Result = await response.json();
+
+        const ExchangeRate = Result.conversion_rates[convertTo];
+
+        const ConversionResult = ExchangeRate * InputAmount;
+
+        // Displaying the conversion result.
+        Output.innerText = `${ConversionResult} ${convertTo}`;
+    } catch(err) {
+
+        // Displaying error.
+        console.log(err);
+        Output.innerText = `Something went wrong`;
+    }
+
+}
+
 
 /*
     This function updates the flag image according to the passed element's value.
@@ -46,9 +83,27 @@ Select.forEach(select => {
     select.addEventListener('change', (e) => {
         const TargetedElement = e.target;
 
+        if (select.getAttribute('id') === 'from') {
+
+            /*
+                convertFrom = document.querySelector(select option[value="countryCode"]);
+
+                Example: document.querySelector(select option[value="US"]);
+            */
+            convertFrom = document.querySelector(`select option[value="${TargetedElement.value}"]`).innerText;
+        } else {
+            convertTo = document.querySelector(`select option[value="${TargetedElement.value}"]`).innerText;
+        }
+
         // Update the flag image;
         UpdateFlag(TargetedElement);
     })
 
 })
 
+// Adding event listener to convert button.
+ConvertBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    Convert();
+})

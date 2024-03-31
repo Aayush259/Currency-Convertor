@@ -28,33 +28,23 @@
 
                     <div class="dropdown">
                         <label for="from">
-                            <img src="https://flagsapi.com/US/flat/64.png" alt="Flag" class="flag-image">
+                            <img src="https://flagsapi.com/US/flat/64.png" alt="Flag" class="flag-image" id="from-image">
                         </label>
-                        <select name="from" id="from">
-                            <option value="USD" selected>USD</option>
-                            <option value="INR">INR</option>
-                            <option value="AUD">AUD</option>
-                            <option value="JPY">JPY</option>
-                        </select>
+                        <select name="from" id="from"></select>
                     </div>
 
                     <div class="dropdown">
                         <label for="to">
-                            <img src="https://flagsapi.com/IN/flat/64.png" class="flag-image">
+                            <img src="https://flagsapi.com/IN/flat/64.png" class="flag-image" id="to-image">
                         </label>
-                        <select name="to" id="to">
-                            <option value="USD">USD</option>
-                            <option value="INR" selected>INR</option>
-                            <option value="AUD">AUD</option>
-                            <option value="JPY">JPY</option>
-                        </select>
+                        <select name="to" id="to"></select>
                     </div>
 
                 </div>
 
                 <div class="input-output">
 
-                    <input type="text" class="currency-input currency" placeholder="Type here" name="inputAmount" autofocus>
+                    <input type="text" class="currency-input currency" placeholder="Type here" name="inputAmount" id="inputAmount" autofocus>
 
                     <div class="currency-output currency">Your Output</div>
 
@@ -64,5 +54,8 @@
             </form>
         </main>
     </div>
+
+    <script src="./code.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>

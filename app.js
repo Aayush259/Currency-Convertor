@@ -3,21 +3,44 @@ const Select = document.querySelectorAll('select');
 const ConvertBtn = document.getElementById('convert-btn');
 const Input = document.getElementById('inputAmount');
 const Output = document.querySelector('.currency-output');
+const ErrorMsg = document.getElementById('error-msg');
 
 let convertFrom = 'USD';
 let convertTo = 'INR';
+
+/*
+    This function is responsible for displaying error for an invalid value in input element.
+*/
+const DisplayError = () => {
+
+    Input.classList.add('error');
+    ErrorMsg.style.visibility = `visible`;
+
+}
 
 /*
     This function converts the currency and shows it on the screen.
 */
 const Convert = async () => {
 
-    const InputAmount = Number(Input.value);
-
-    // If the input amount is not a number then do nothing.
-    if (isNaN(InputAmount)) {
+    // If the input value is empty then display error and return nothing.
+    if (Input.value === '') {
+        DisplayError();
         return;
     }
+
+    // If the input value is not empty then convert it into number.
+    const InputAmount = Number(Input.value);
+
+    // If the input amount is not a number then display error.
+    if (isNaN(InputAmount)) {
+        DisplayError();
+        return;
+    }
+
+    // If everything is fine then remove the error from screen if it was present previously.
+    Input.classList.remove('error');
+    ErrorMsg.style.visibility = `hidden`;
 
     try {
         // Fetching data from exchange rate API.
@@ -39,7 +62,6 @@ const Convert = async () => {
     }
 
 }
-
 
 /*
     This function updates the flag image according to the passed element's value.
@@ -103,7 +125,9 @@ Select.forEach(select => {
 
 // Adding event listener to convert button.
 ConvertBtn.addEventListener('click', (e) => {
+    // Prevent default behavior of submitting form after clicking the button.
     e.preventDefault();
 
+    // Convert the currency entered by the user.
     Convert();
 })

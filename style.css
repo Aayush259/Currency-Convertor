@@ -46,7 +46,8 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    margin-top: 1.4rem;
+    margin-top: 1.8rem;
+    position: relative;
 }
 
 .dropdown {
@@ -93,4 +94,20 @@ select {
     border-radius: 0.3rem;
     color: #fff;
     letter-spacing: 1px;
+}
+
+p.error {
+    position: absolute;
+    top: -1.1rem;
+    left: 1.5rem;
+    font-weight: 700;
+}
+
+.error {
+    border-color: hsl(354, 84%, 57%);
+    color: hsl(354, 84%, 57%);
+}
+
+.hidden {
+    visibility: hidden;
 }

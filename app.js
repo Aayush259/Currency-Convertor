@@ -4,6 +4,14 @@ const ConvertBtn = document.getElementById('convert-btn');
 const Input = document.getElementById('inputAmount');
 const Output = document.querySelector('currency-output');
 
+/*
+    This function updates the flag image according to the passed element's value.
+*/
+const UpdateFlag = (element) => {
+
+    element.previousElementSibling.querySelector('.flag-image').src = `https://flagsapi.com/${element.value}/flat/64.png`;
+}
+
 // Adding all the values for dropdown inside the select element.
 Select.forEach(select => {
 
@@ -33,6 +41,14 @@ Select.forEach(select => {
         select.append(NewOption);
 
     }
+
+    // Adding event listener to each select element so that when it changes then the flag also changes.
+    select.addEventListener('change', (e) => {
+        const TargetedElement = e.target;
+
+        // Update the flag image;
+        UpdateFlag(TargetedElement);
+    })
 
 })
 

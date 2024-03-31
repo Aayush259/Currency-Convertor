@@ -111,3 +111,23 @@ p.error {
 .hidden {
     visibility: hidden;
 }
+
+@media only screen and (max-width: 670px) {
+    .currency, select, #convert-btn {
+        width: 98%;
+    }
+    
+    .input-output, .dropdown-container {
+        gap: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #currency-convertor {
+        padding: 5px;
+    }
+
+    .dropdown {
+        padding: 0 0.4rem;
+    }
+}

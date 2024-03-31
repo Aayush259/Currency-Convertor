@@ -82,6 +82,7 @@ body {
 
 select {
     border: none;
+    background-color: transparent;
 }
 
 #convert-btn {

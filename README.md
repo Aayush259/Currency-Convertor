@@ -9,7 +9,7 @@ This is a simple currency converter app built using HTML, CSS, and JavaScript. I
 - User-friendly interface.
 
 ## Installation
-1. Clone this repository: `git clone <your-repo-link>`
+1. Clone this repository: `git clone <https://github.com/Aayush259/Currency-Convertor.git>`
 2. Open `index.html` in your browser.
 
 ## Usage
